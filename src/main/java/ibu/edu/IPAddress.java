@@ -17,6 +17,10 @@ public class IPAddress implements Comparable<IPAddress>{
         this.cityName = cityName;
     }
 
+    public long getIpFrom(){
+        return this.ipFrom;
+    }
+
     @Override
     public int compareTo(IPAddress that) {
         if(this.ipFrom > that.ipFrom){

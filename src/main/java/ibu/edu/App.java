@@ -10,18 +10,18 @@ public class App {
     public static void main(String[] args) throws IOException {
 
         String path = "C:\\Users\\Korisnik\\Desktop\\IP-COUNTRY-REGION-CITY-SHUFFLED\\IP-COUNTRY-REGION-CITY-SHUFFLED.csv";
-        String QuickSortPath = "C:\\Users\\Korisnik\\Desktop\\IP-COUNTRY-REGION-CITY-SHUFFLED\\QuickSort IPs.csv";
+        String RadixSortPath = "C:\\Users\\Korisnik\\Desktop\\IP-COUNTRY-REGION-CITY-SHUFFLED\\RadixSort IPs.csv";
 
         File file = new File(path);
-        File newFileQuickSort = new File(QuickSortPath);
+        File newFileRadixSort = new File(RadixSortPath);
 
         Scanner input = new Scanner(file);
 
-        FileWriter QuickSortFileWriter = new FileWriter(newFileQuickSort);
+        FileWriter RadixSortFileWriter = new FileWriter(newFileRadixSort);
 
 
         String[] ips;
-        IPAddress[] ipAddressesQuickSort = new IPAddress[50];
+        IPAddress[] ipAddressesRadixSort = new IPAddress[50];
 
         int i = 0;
         while (input.hasNextLine() && i < 50) {
@@ -32,21 +32,21 @@ public class App {
 
             long ipFrom = Long.parseLong(ips[0]);
             long ipTo = Long.parseLong(ips[1]);
-            ipAddressesQuickSort[i] = new IPAddress(ipFrom, ipTo, ips[2], ips[3], ips[4], ips[5]);
+            ipAddressesRadixSort[i] = new IPAddress(ipFrom, ipTo, ips[2], ips[3], ips[4], ips[5]);
             i++;
 
         }
         input.close();
 
-        //Quick sort
+        //Radix sort
         long start = System.currentTimeMillis();
 
-        //QuickSort.sort(ipAddressesQuickSort);
+        RadixSort.sort(ipAddressesRadixSort);
 
-        for (int a = 0; a < ipAddressesQuickSort.length; a++) {
-            QuickSortFileWriter.write("\"" + ipAddressesQuickSort[a].ipFrom + "\"," + "\"" + ipAddressesQuickSort[a].ipTo + "\"," + "\"" + ipAddressesQuickSort[a].countryCode + "\"," + "\"" + ipAddressesQuickSort[a].countryName + "\"," + "\"" + ipAddressesQuickSort[a].regionName + "\"," + "\"" + ipAddressesQuickSort[a].cityName + "\n");
+        for (int a = 0; a < ipAddressesRadixSort.length; a++) {
+            RadixSortFileWriter.write("\"" + ipAddressesRadixSort[a].ipFrom + "\"," + "\"" + ipAddressesRadixSort[a].ipTo + "\"," + "\"" + ipAddressesRadixSort[a].countryCode + "\"," + "\"" + ipAddressesRadixSort[a].countryName + "\"," + "\"" + ipAddressesRadixSort[a].regionName + "\"," + "\"" + ipAddressesRadixSort[a].cityName + "\n");
         }
-        QuickSortFileWriter.close();
-        System.out.println("Recursive Merge sort completed! Done in " + (System.currentTimeMillis() - start) + " ms");
+        RadixSortFileWriter.close();
+        System.out.println("Radix sort completed! Done in " + (System.currentTimeMillis() - start) + " ms");
     }
 }
